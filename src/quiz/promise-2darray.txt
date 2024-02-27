@@ -1,3 +1,3 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
 
-Since calculating the sum of the 2d array is computational expensive (time in the order of n^2), so after the first call to sum2dArray, the next call to sum2dArray occurs before returning the result of first call, which results in an error and a rejection, which is logged before the first sum2dArray promise is resolved and the sum is logged.
+Since calculating the sum of the 2d array is computational expensive (time in the order of n^2), so after the first call to sum2dArray, the next call to sum2dArray occurs before returning the result of first call, which results in an error and a rejection, which is logged before the first sum2dArray promise is resolved and the sum is logged. However the creation of the promise happens in the main event thread, so the first console log when the promise is created occurs immediately when the function is called.
