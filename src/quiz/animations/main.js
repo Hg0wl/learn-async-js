@@ -13,6 +13,7 @@ const aliceTumbling = [
   const alice2 = document.querySelector("#alice2");
   const alice3 = document.querySelector("#alice3");
 
+  /*
   alice1
     .animate(aliceTumbling, aliceTiming)
     .finished
@@ -26,6 +27,24 @@ const aliceTumbling = [
                 alice3.animate(aliceTumbling, aliceTiming);
             })
     });
+
+*/
+
+
+async function animateAlice() {
+  try {
+    await alice1.animate(aliceTumbling, aliceTiming).finished;
+    await alice2.animate(aliceTumbling, aliceTiming).finished;
+    await alice3.animate(aliceTumbling, aliceTiming).finished;
+  } catch(err) {
+    console.log('Error when animating: ${err.message}');
+  }
+  
+}
+
+animateAlice();
+
+
 
   // Promise chain  
   // alice1.animate(aliceTumbling, aliceTiming).finished  
