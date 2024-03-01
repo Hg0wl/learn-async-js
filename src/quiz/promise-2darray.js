@@ -28,12 +28,27 @@ const array2D = [
     [7, 8, 9]
 ];
 
-const sumPromise1 = sum2DArray(array2D);
-sumPromise1
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
 
-const sumPromise2 = sum2DArray('array2D');
-sumPromise2
-    .then((res) => (console.log(res)))
-    .catch((err) => (console.log(err)));
+async function calculateSum() {
+    const rowSumPromises =[]
+
+    for (let x =0; x < array2D.length; x++) {
+        rowSumPromises.push(sumOfARow(array2D, x));
+    }
+
+    try {
+        const rowSums = await Promise.all(rowSumPromises);
+        let sum = 0;
+        rowSums.forEach(rowSum => {
+            sum+= rowSum;
+        });
+        console.log("Sum = " + sum);
+        return 'done';
+    } catch(error) {
+        console.log("Error Message" + error);
+        return "failed'"
+    }
+
+}
+
+calculateSum().then((status) => console.log(status));
